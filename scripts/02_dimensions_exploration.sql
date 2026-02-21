@@ -27,16 +27,22 @@ Functions Used:
 
 */
 
--- Retrieve a list of unique countries from which customers originate
-SELECT DISTINCT 
-    country 
-FROM gold.dim_customers
+SELECT DISTINCT country
+FROM   gold.dim_customers
 ORDER BY country;
 
--- Retrieve a list of unique categories, subcategories, and products
-SELECT DISTINCT 
-    category, 
-    subcategory, 
-    product_name 
-FROM gold.dim_products
+
+-- ============================================================
+-- Unique Product Categories, Subcategories & Product Names
+-- ------------------------------------------------------------
+-- Shows the full product hierarchy in one view.
+-- Helps understand how products are structured before
+-- writing category-level or subcategory-level aggregations.
+-- ============================================================
+
+SELECT DISTINCT
+    category,
+    subcategory,
+    product_name
+FROM  gold.dim_products
 ORDER BY category, subcategory, product_name;
