@@ -28,7 +28,6 @@ Sales Date Range
 
 */
 
--- Determine the first and last order date and the total duration in months
 
 SELECT
     MIN(order_date)  AS first_order_date,
@@ -38,11 +37,16 @@ SELECT
 FROM gold.fact_sales;
 
 
--- Find the youngest and oldest customer based on birthdate
+-- ============================================================
+-- Customer Age Range
+
+-- Identifies the oldest and youngest customers based on
+-- birthdate, and calculates their current age in years.
+-- ============================================================
 
 SELECT
-    MIN(birthdate) AS oldest_birthdate,
+    MIN(birthdate)  AS oldest_birthdate,
     EXTRACT(YEAR FROM AGE(CURRENT_DATE, MIN(birthdate)))::INT AS oldest_age,
-    MAX(birthdate) AS youngest_birthdate,
+    MAX(birthdate)  AS youngest_birthdate,
     EXTRACT(YEAR FROM AGE(CURRENT_DATE, MAX(birthdate)))::INT AS youngest_age
 FROM gold.dim_customers;
